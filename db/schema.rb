@@ -13,17 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20150910003924) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "entries", force: :cascade do |t|
     t.text     "body"
     t.integer  "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "order"
-    t.datetime "posted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
