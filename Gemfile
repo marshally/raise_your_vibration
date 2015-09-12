@@ -5,6 +5,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'dotenv-rails'
+
 gem 'rails', '4.2.4'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
