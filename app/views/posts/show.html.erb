@@ -4,11 +4,11 @@
     <% @post.entries.each do |entry| %>
       <tr>
         <td><%= entry.body %></td>
-        <td><%= link_to "Delete", entry_path(entry), method: :delete, html_options: {class: "btn btn-default btn-primary"} %></td>
+        <td><%= link_to "Delete", post_entry_path(@post, entry), method: :delete, html_options: {class: "btn btn-default btn-primary"} %></td>
       </tr>
     <% end %>
 
-    <%= form_for(@entry, :html => {:class => "form-horizontal center"}) do |f| %>
+    <%= form_for([@post, @entry], :html => {:class => "form-horizontal center"}) do |f| %>
       <% if @entry.errors.any? %>
         <tr>
           <td>
