@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get '/auth/facebook', as: :login
   get '/logout', to: "sessions#destroy", as: :logout
 
-  root 'entries#index'
+  root 'home#index'
 end
