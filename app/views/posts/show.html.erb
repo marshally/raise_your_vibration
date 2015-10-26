@@ -3,8 +3,11 @@
   <tbody>
     <% @post.entries.each do |entry| %>
       <tr>
-        <td><%= entry.body %></td>
-        <td><%= link_to "Delete", post_entry_path(@post, entry), method: :delete, html_options: {class: "btn btn-default btn-primary"} %></td>
+        <td>
+          <div><%= entry.body %></div>
+          <small><%= time_ago_in_words entry.created_at %> ago</small>
+        </td>
+        <td><%= link_to_if(@post.posted_at.nil?, "Delete", post_entry_path(@post, entry), method: :delete, html_options: {class: "btn btn-default btn-primary"}) %></td>
       </tr>
     <% end %>
 
