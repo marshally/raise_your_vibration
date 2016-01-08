@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<table class="table">
+  <tbody>
+    <% @post.entries.each do |entry| %>
+      <tr>
+        <td>
+          <div><%= entry.body %></div>
+          <small><%= time_ago_in_words entry.created_at %> ago</small>
+        </td>
+        <td><%= link_to_if(@post.posted_at.nil?, "Delete", post_entry_path(@post, entry), method: :delete, html_options: {class: "btn btn-default btn-primary"}) %></td>
+      </tr>
+    <% end %>
+
+    <%= form_for([@post, @entry], :html => {:class => "form-horizontal center"}) do |f| %>
+      <% if @entry.errors.any? %>
+        <tr>
+          <td>
+            <div id="error_explanation">
+              <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+              <ul>
+              <% @entry.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>
+          <div class="field">
+            <%= f.text_field :body, size: 50, class: "form-control", value: "I am grateful for " %>
+          </div>
+        </td>
+        <td>
+          <span class="actions">
+            <%= f.submit "Grat", class: "btn btn-default btn-primary" %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+    <% if @post.posted_at.nil? %>
+      <tr>
+        <td>
+          <%= button_to "Publish", {action: "publish"}, {class: "btn btn-default btn-primary"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <% current_user.posts.where("posted_at IS NOT NULL").order("posted_at DESC").limit(5).each do |post| %>
+    <tr>
+      <td>
+        <pre><%= post.body %></pre>
+        <small><%= time_ago_in_words post.created_at %> ago</small>
+      </td>
+    </tr>
+  <% end %>
+</table>
