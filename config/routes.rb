@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     collection do
       get :newest
     end
+    member do
+      post :publish
+    end
     resources :entries, only: [:create, :update, :destroy]
   end
 

@@ -34,11 +34,29 @@
           </div>
         </td>
         <td>
-          <div class="actions">
-            <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
-          </div>
+          <span class="actions">
+            <%= f.submit "Grat", class: "btn btn-default btn-primary" %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+    <% if @post.posted_at.nil? %>
+      <tr>
+        <td>
+          <%= button_to "Publish", {action: "publish"}, {class: "btn btn-default btn-primary"} %>
         </td>
       </tr>
     <% end %>
   </tbody>
+</table>
+
+<table class="table">
+  <% current_user.posts.where("posted_at IS NOT NULL").order("posted_at DESC").limit(5).each do |post| %>
+    <tr>
+      <td>
+        <pre><%= post.body %></pre>
+        <small><%= time_ago_in_words post.created_at %> ago</small>
+      </td>
+    </tr>
+  <% end %>
 </table>

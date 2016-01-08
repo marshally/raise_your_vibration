@@ -11,6 +11,12 @@ class PostsController < ApplicationController
     @entry = Entry.new(post_id: @post.id)
   end
 
+  def publish
+    @post = Post.find(params[:id])
+
+    redirect_to :root
+  end
+
   def require_login
     unless current_user.present?
       redirect_to :root
