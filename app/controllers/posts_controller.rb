@@ -13,6 +13,8 @@ class PostsController < ApplicationController
 
   def publish
     @post = Post.find(params[:id])
+    @post.update(body: @post.suggested_body)
+    @post.publish
 
     redirect_to :root
   end
