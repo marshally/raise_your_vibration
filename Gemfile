@@ -4,6 +4,7 @@ ruby "2.2.3"
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'koala'
 
 gem 'dotenv-rails'
 
