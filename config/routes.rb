@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     collection do
       get :newest
     end
-    resources :entries
+    resources :entries, only: [:create, :update, :destroy]
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'
