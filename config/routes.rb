@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get '/auth/facebook', as: :login
   get '/logout', to: "sessions#destroy", as: :logout
 
+  post '/sms/receive', to: 'sms#receive'
+
   root 'home#index'
 end
