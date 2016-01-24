@@ -15,7 +15,8 @@ class Post < ActiveRecord::Base
   private
 
   def facebook
-    facebook = Koala::Facebook::API.new(user.token)
+    Koala::Facebook::API.new(user.token)
+  end
 
   def post_to_facebook
     facebook.put_object("/#{FB_GROUP_ID}", "feed", message: body)
