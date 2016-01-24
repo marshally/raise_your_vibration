@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
     entries.map(&:body).join("\n")
   end
 
-private
+  private
 
   def facebook
     facebook = Koala::Facebook::API.new(user.token)
