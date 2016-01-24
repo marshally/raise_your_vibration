@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
       .find_or_create_by(fb_id: auth_hash[:uid]).tap do |u|
     end
   end
+
+  def newest_post
+    posts.find_or_create_by(posted_at: nil)
+  end
 end

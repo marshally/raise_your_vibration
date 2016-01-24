@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :require_login
 
   def newest
-    @post = Post.find_or_create_by(user_id: current_user.id, posted_at: nil)
+    @post = current_user.newest_post
     redirect_to @post
   end
 
