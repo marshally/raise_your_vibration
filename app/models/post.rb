@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  FB_GROUP_ID = "995885547126384"
+  FB_GROUP_ID = "995885547126384".freeze
   belongs_to :user
   has_many :entries
 
