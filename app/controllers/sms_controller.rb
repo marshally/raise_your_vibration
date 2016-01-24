@@ -5,15 +5,19 @@ class SmsController < ApplicationController
 
   def receive
     if params["Body"].downcase == "publish"
-      current_user.newest_post.publish
+      post.publish
       render plain: "Published!"
     else
-      entry = current_user.newest_post.entries.create!(body: params["Body"])
+      entry = post.entries.create!(body: params["Body"])
       render plain: "created '#{entry.body}'"
     end
   end
 
   private
+
+  def post
+    current_user.newest_post
+  end
 
   def set_current_user
     self.current_user = User.find_by!(phone_number: params["From"])
