@@ -20,7 +20,6 @@ class SmsController < ApplicationController
   end
 
   def set_current_user
-    puts "set_current_user"
     self.current_user = User.find_by!(phone_number: params["From"])
   end
 end

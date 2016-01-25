@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  FB_GROUP_ID = "995885547126384"
+  FB_GROUP_ID = "995885547126384".freeze
   belongs_to :user
   has_many :entries
 
@@ -12,10 +12,11 @@ class Post < ActiveRecord::Base
     entries.map(&:body).join("\n")
   end
 
-private
+  private
 
   def facebook
-    facebook = Koala::Facebook::API.new(user.token)
+    Koala::Facebook::API.new(user.token)
+  end
 
   def post_to_facebook
     facebook.put_object("/#{FB_GROUP_ID}", "feed", message: body)

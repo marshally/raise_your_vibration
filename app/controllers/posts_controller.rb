@@ -18,8 +18,6 @@ class PostsController < ApplicationController
   end
 
   def require_login
-    unless current_user.present?
-      redirect_to :root
-    end
+    redirect_to :root unless current_user.present?
   end
 end
