@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :require_login
 
   def newest
-    @post = Post.find_or_create_by(user_id: current_user.id, posted_at: nil)
+    @post = current_user.newest_post
     redirect_to @post
   end
 
@@ -12,9 +12,7 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post = Post.find(params[:id])
-    @post.update(body: @post.suggested_body)
-    @post.publish
+    Post.find(params[:id]).publish
 
     redirect_to :root
   end

@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'twilio-ruby'
 
 gem 'dotenv-rails'
 

@@ -4,8 +4,8 @@ class Post < ActiveRecord::Base
   has_many :entries
 
   def publish
-    facebook.put_object("/#{FB_GROUP_ID}", "feed", message: body)
-    update(posted_at: Time.now)
+    update(body: suggested_body)
+    post_to_facebook
   end
 
   def suggested_body
@@ -16,5 +16,9 @@ private
 
   def facebook
     facebook = Koala::Facebook::API.new(user.token)
+
+  def post_to_facebook
+    facebook.put_object("/#{FB_GROUP_ID}", "feed", message: body)
+    update(posted_at: Time.now)
   end
 end
