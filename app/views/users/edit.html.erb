@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<table class="table">
+  <tbody>
+    <%= form_for(@user, :html => {:class => "form-horizontal center"}) do |f| %>
+      <% if @user.errors.any? %>
+        <tr>
+          <td>
+            <div id="error_explanation">
+            <% @user.errors.full_messages.each do |message| %>
+              <h2><%= message %></h2>
+            <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>
+          <div class="field">
+            <%= f.text_field :phone_number, size: 50, class: "form-control" %>
+          </div>
+        </td>
+        <td>
+          <span class="actions">
+            <%= f.submit "Update Phone Number", class: "btn btn-default btn-primary" %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
