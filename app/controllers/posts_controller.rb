@@ -8,12 +8,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     @entry = Entry.new(post_id: @post.id)
   end
 
   def publish
-    Post.find(params[:id]).publish
+    @post = current_user.posts.find(params[:id])
+    @post.publish
 
     redirect_to :root
   end
