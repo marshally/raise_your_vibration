@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
 
-    if @user.phone_number.empty?
+    unless @user.phone_number.present?
       @user.errors[:phone_number] << "has not been set"
     end
   end
