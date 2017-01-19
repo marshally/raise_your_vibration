@@ -9,7 +9,7 @@ class SmsController < ApplicationController
       render plain: "Published!"
     else
       entry = post.entries.create!(body: params["Body"])
-      render plain: "created '#{entry.body}'"
+      render plain: "created '#{entry.body}' #{post_url(post)}"
     end
   end
 
