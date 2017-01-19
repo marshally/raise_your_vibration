@@ -1,0 +1,31 @@
+<%= form_for(@post, :url => publish_post_path(@post), :html => {:class => "form-horizontal center"}) do |f| %>
+  <% if @post.errors.any? %>
+    <tr>
+      <td>
+        <div id="error_explanation">
+          <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+          <ul>
+          <% @entry.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>
+      <div class="field">
+        <pre>
+          <%= f.text_area :body, size: 50, rows: 10, autofocus: true, class: "form-control", value: @body %>
+        </pre>
+      </div>
+    </td>
+    <td>
+      <span class="actions">
+        <%= f.submit "Publish!", class: "btn btn-default btn-primary" %>
+      </span>
+    </td>
+  </tr>
+<% end %>

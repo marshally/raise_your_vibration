@@ -30,7 +30,7 @@
       <tr>
         <td>
           <div class="field">
-            <%= f.text_field :body, size: 50, class: "form-control", value: "I am grateful for " %>
+            <%= f.text_field :body, size: 50, autofocus: true, class: "form-control" %>
           </div>
         </td>
         <td>
@@ -43,7 +43,7 @@
     <% if @post.posted_at.nil? %>
       <tr>
         <td>
-          <%= button_to "Publish", {action: "publish"}, {class: "btn btn-default btn-primary"} %>
+          <%= button_to "Finalize", { action: "body" }, {class: "btn btn-default btn-primary"} %>
         </td>
       </tr>
     <% end %>

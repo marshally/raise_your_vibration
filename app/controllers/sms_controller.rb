@@ -16,7 +16,7 @@ class SmsController < ApplicationController
   private
 
   def post
-    current_user.newest_post
+    @post ||= current_user.newest_post
   end
 
   def set_current_user
