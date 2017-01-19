@@ -9,14 +9,14 @@ class SmsController < ApplicationController
       render plain: "Published!"
     else
       entry = post.entries.create!(body: params["Body"])
-      render plain: "created '#{entry.body}'"
+      render plain: "created '#{entry.body}' #{post_url(post)}"
     end
   end
 
   private
 
   def post
-    current_user.newest_post
+    @post ||= current_user.newest_post
   end
 
   def set_current_user

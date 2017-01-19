@@ -8,15 +8,26 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     @entry = Entry.new(post_id: @post.id)
   end
 
+  def body
+    @post = current_user.posts.find(params[:id])
+    @body = @post.body || @post.suggested_body
+  end
+
   def publish
-    Post.find(params[:id]).publish
+    @post = current_user.posts.find(params[:id])
+    @post.update(
+        params.require(:post).permit(:body)
+    )
+    @post.publish
 
     redirect_to :root
   end
+
+  private
 
   def require_login
     redirect_to :root unless current_user.present?

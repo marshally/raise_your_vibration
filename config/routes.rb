@@ -4,7 +4,8 @@ Rails.application.routes.draw do
       get :newest
     end
     member do
-      post :publish
+      post :body
+      patch :publish
     end
     resources :entries, only: [:create, :update, :destroy]
   end
